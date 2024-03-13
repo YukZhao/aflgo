@@ -80,11 +80,12 @@ inline void init_distances_from(const graph_t &G, vertex_desc from, std::vector<
 
 void distance(
     const graph_t &G,
-    const std::string &name,
+    const std::string &name_temp,
     const std::vector<vertex_desc> &targets,
     std::ofstream &out,
     unordered_map<std::string, double> &bb_distance
 ) {
+    std::string name = name_temp.substr(0, name_temp.size() - 1);
     if (not is_cg and bb_distance.find(name) != bb_distance.end()) {
         out << name << "," << bo::lexical_cast<std::string>(10 * bb_distance[name]) << "\n";
         return;
